@@ -1,0 +1,17 @@
+﻿@model IEnumerable<GeziRehberi.Models.City>
+
+@{
+    ViewData["Title"] = "Şehir Listesi";
+}
+
+<h1 style="text-align: center; padding: 20px;">Şehir Listesi</h1>
+<div class="city-list" style="display: flex; flex-wrap: wrap; gap: 20px; padding: 20px;">
+    @foreach (var city in Model)
+    {
+        <div class="city-item" style="background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 15px; width: 200px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+            <h3>@city.Name</h3>
+            <p>@city.Description</p>
+            <a href="/Home/Details/@city.Id" style="text-decoration: none; color: #007BFF;">Detaylar</a>
+        </div>
+    }
+</div>

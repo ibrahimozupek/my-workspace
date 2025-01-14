@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Gezi Rehberi";
+}
+
+<h1 style="text-align:center; padding: 20px;">Türkiye Gezi Rehberi</h1>
+
+<div id="map-container" style="text-align: center; padding: 20px;">
+    <iframe src="/images/index.html"
+            id="svg-turkiye-haritasi"
+            style="width: 80%; max-width: 800px; height: 600px; border: none;">
+        Harita görüntülenemiyor. Lütfen tarayıcınızı kontrol edin.
+    </iframe>
+</div>
+
+<div id="city-list" class="city-list">
+</div>
+<link rel="stylesheet" href="/css/Style.css" />
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const svgObject = document.getElementById("svg-turkiye-haritasi");
+            svgObject.addEventListener("load", function () {
+                const svgDoc = svgObject.contentDocument;
+                const cities = svgDoc.querySelectorAll("[data-plakakodu]");
+                cities.forEach(city => {
+                    city.style.cursor = "pointer"; 
+                    city.addEventListener("click", function () {
+                        const cityId = city.getAttribute("data-plakakodu");
+                        window.location.href = `/Home/Details/${cityId}`; 
+                    });
+                });
+            });
+        });
+ 
+    </script>
+
+    
+
+}

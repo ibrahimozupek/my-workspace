@@ -1,0 +1,69 @@
+﻿/* Genel stiller */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.city-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.city-item {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    width: 200px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+    .city-item h3 {
+        margin: 0 0 10px;
+    }
+
+    .city-item p {
+        font-size: 14px;
+        color: #555;
+    }
+
+    .city-item a {
+        text-decoration: none;
+        color: #007BFF;
+    }
+
+#map-container {
+    margin-bottom: 40px;
+}
+
+/* Mobil ekranlar için medya sorgusu */
+@media (max-width: 768px) {
+    .city-list {
+        flex-direction: column; /* Şehir listesi tek sütun olur */
+        align-items: center;
+    }
+
+    .city-item {
+        width: 90%; /* Şehir kartları ekran genişliğinin %90'ını kaplar */
+    }
+
+    #map-container object {
+        width: 100%; /* Harita tam genişlikte görünür */
+    }
+}
+
+/* Daha küçük mobil cihazlar için medya sorgusu */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 20px; /* Başlık boyutunu küçültür */
+    }
+
+    .city-item {
+        width: 100%; /* Şehir kartları ekran genişliğini tamamen kaplar */
+        padding: 10px; /* İç boşlukları küçültür */
+    }
+}

@@ -1,0 +1,82 @@
+﻿@model GeziRehberi.Models.City
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<h1 style="text-align: center;">@Model.Name</h1>
+<p style="text-align: center;">@Model.Description</p>
+
+<h2 style="padding: 20px;">Gezilecek Yerler</h2>
+<div class="place-list">
+    @foreach (var place in Model.Places)
+    {
+        <div class="place-item">
+            <h3>@place.Name</h3>
+            <p>@place.Description</p>
+            <img src="@place.ImageUrl" alt="@place.Name" style="width: 100%; max-width: 300px; height: auto;">
+        </div>
+    }
+</div>
+
+
+<h4>Yorum Ekle</h4>
+<form asp-action="AddComment" method="post">
+    <input type="hidden" name="cityId" value="@Model.Id" />
+    <label for="userName">Adınız:</label>
+    <input type="text" id="userName" name="userName" required />
+    <label for="content">Yorumunuz:</label>
+    <textarea id="content" name="content" required></textarea>
+    <button type="submit">Gönder</button>
+</form>
+
+
+
+<div id="comments-list">
+    <h3>Yorumlar</h3>
+    @if (ViewBag.comments != null && ((List<Comment>)ViewBag.comments).Any())
+    {
+        foreach (var comment in (List<Comment>)ViewBag.comments)
+        {
+            <div>
+                <strong>@comment.UserName</strong> (@comment.CreatedAt.ToLocalTime()):
+                <p>@comment.Content</p>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Henüz yorum yok.</p>
+    }
+</div>
+
+
+
+
+
+<style>
+    .place-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .place-item {
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 8px;
+        background: #fff;
+        width: 300px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+        .place-item h3 {
+            margin: 0 0 10px;
+        }
+
+        .place-item p {
+            color: #555;
+            font-size: 14px;
+        }
+</style>
